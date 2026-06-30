@@ -11,6 +11,7 @@ import { PhaseShell } from "./PhaseShell";
 import { IncompleteState } from "./IncompleteState";
 import { Loader2, AlertTriangle, IndianRupee, Gauge, Star, Phone, MessageCircle, Globe } from "lucide-react";
 import type { Lead, AuditResult } from "@/lib/types";
+import { saveAudit } from "@/lib/db";
 import { toast } from "sonner";
 
 export function Phase2Audit({
@@ -71,6 +72,7 @@ export function Phase2Audit({
         const data = await res.json();
         all[lead.id] = data.audit;
         setAudits({ ...all });
+        saveAudit(data.audit);
         setProgress(Math.round(((i + 1) / targets.length) * 100));
         await new Promise((r) => setTimeout(r, 150));
       }

@@ -12,6 +12,7 @@ import { Label } from "@/components/ui/label";
 import { PhaseShell } from "./PhaseShell";
 import { Loader2, MapPin, Phone, Star, Globe, MessageCircle, Mail } from "lucide-react";
 import type { Lead, ScrapeInput } from "@/lib/types";
+import { saveLeads } from "@/lib/db";
 import { toast } from "sonner";
 
 const LeadMap = dynamic(() => import("./LeadMap"), { ssr: false });
@@ -47,6 +48,7 @@ export function Phase1Scrape({
         setLeads(data.leads.slice(0, i + 1));
       }
       toast.success(`${data.leads.length} leads scraped from ${input.city}`);
+      saveLeads(data.leads);
     } catch (e) {
       toast.error((e as Error).message);
     } finally {

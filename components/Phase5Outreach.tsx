@@ -11,6 +11,7 @@ import { PhaseShell } from "./PhaseShell";
 import { IncompleteState } from "./IncompleteState";
 import { MessageCircle, Mail, Camera, Copy, ExternalLink, Sparkles } from "lucide-react";
 import type { RankedLead, OutreachChannel, OutreachLanguage } from "@/lib/types";
+import { saveOutreachDraft } from "@/lib/db";
 import { toast } from "sonner";
 
 export function Phase5Outreach({
@@ -30,6 +31,7 @@ export function Phase5Outreach({
     const m = buildOutreach(selected, channel, lang);
     setMessage(m.first);
     setFollowUp(m.followUp);
+    saveOutreachDraft(selected.id, channel, lang, m.first, m.followUp);
   }, [selected, channel, lang]);
 
   function copy(text: string) {

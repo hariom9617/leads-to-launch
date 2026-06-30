@@ -9,6 +9,7 @@ import { PhaseShell } from "./PhaseShell";
 import { IncompleteState } from "./IncompleteState";
 import { Copy, ExternalLink, Sparkles, Loader2 } from "lucide-react";
 import type { RankedLead } from "@/lib/types";
+import { savePrompt } from "@/lib/db";
 import { toast } from "sonner";
 
 const PLATFORMS = [
@@ -36,6 +37,7 @@ export function Phase4Build({
     if (!selected) return;
     const p = buildPrompt(selected, platform);
     setPrompt(p);
+    savePrompt(selected.id, platform, p);
   }, [selected, platform]);
 
   useEffect(() => {
