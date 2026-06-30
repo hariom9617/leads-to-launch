@@ -78,7 +78,7 @@ export function PromptsPanel({
       {/* Filter */}
       <div className="flex items-center gap-3">
         <span className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Platform</span>
-        <Select value={platformFilter} onValueChange={setPlatformFilter}>
+        <Select value={platformFilter} onValueChange={(value) => setPlatformFilter(value ?? "all")}>
           <SelectTrigger className="w-40 h-9">
             <SelectValue />
           </SelectTrigger>
