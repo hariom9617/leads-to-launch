@@ -89,7 +89,7 @@ export function OutreachPanel({
       {/* Filters */}
       <div className="flex flex-wrap items-center gap-3">
         <span className="text-xs uppercase tracking-[0.12em] text-muted-foreground">Filter</span>
-        <Select value={channelFilter} onValueChange={setChannelFilter}>
+        <Select value={channelFilter} onValueChange={(value) => setChannelFilter(value ?? "all")}>
           <SelectTrigger className="w-36 h-9">
             <SelectValue />
           </SelectTrigger>
@@ -101,7 +101,7 @@ export function OutreachPanel({
             ))}
           </SelectContent>
         </Select>
-        <Select value={langFilter} onValueChange={setLangFilter}>
+        <Select value={langFilter} onValueChange={(value) => setLangFilter(value ?? "all")}>
           <SelectTrigger className="w-36 h-9">
             <SelectValue />
           </SelectTrigger>
